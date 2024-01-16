@@ -11,11 +11,31 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background: linear-gradient(-45deg, #d8891a, #495f15, #073f54, #d523ae);
+  background-size: 400% 400%;
+  background-attachment: fixed;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body {
   font-family: sans-serif;
   line-height: 1.5;
+  padding: 50px;
+  width: 760px;
+  margin: 0 auto;
 }
 
 h1,

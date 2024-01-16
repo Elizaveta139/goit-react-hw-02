@@ -13,6 +13,25 @@ export const App = () => {
     bad: 0,
   });
 
+  //   const [feedback, setFeedback] = useState(() => {
+  //     const savedFeedback = localStorage.getItem('saved-feedback');
+
+  //     if (savedFeedback !== null) {
+  //       const initialValue = JSON.parse(savedFeedback);
+  //       return {
+  //         good: initialValue.good,
+  //         neutral: initialValue.neutral,
+  //         bad: initialValue.bad,
+  //       };
+  //     }
+
+  //     return {
+  //       good: 0,
+  //       neutral: 0,
+  //       bad: 0,
+  //     };
+  //   });
+
   const { good, neutral, bad } = feedback;
 
   const updateGood = () => {
@@ -35,19 +54,6 @@ export const App = () => {
       bad: bad + 1,
     });
   };
-
-  //   useEffect(() => {
-  //     const savedFeedback = window.localStorage.getItem('saved-feedback');
-  //     if (savedFeedback !== null) {
-  //       setFeedback(JSON.parse(savedFeedback));
-  //     } else {
-  //       ({
-  //         good: 0,
-  //         neutral: 0,
-  //         bad: 0,
-  //       });
-  //     }
-  //   }, []);
 
   useEffect(() => {
     window.localStorage.setItem('saved-feedback', JSON.stringify({ feedback }));
@@ -73,6 +79,7 @@ export const App = () => {
             bad: 0,
           })
         }
+        total={totalFeedback}
       />
       {totalFeedback > 0 ? (
         <Feedback

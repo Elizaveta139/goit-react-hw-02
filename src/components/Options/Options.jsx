@@ -1,12 +1,28 @@
 import css from './Options.module.css';
 
-export const Options = ({ optionGood, optionNeutral, optionBad, reset }) => {
+export const Options = ({
+  optionGood,
+  optionNeutral,
+  optionBad,
+  reset,
+  total,
+}) => {
   return (
-    <div>
-      <button onClick={optionGood}>Good</button>
-      <button onClick={optionNeutral}>Neutral</button>
-      <button onClick={optionBad}>Bad</button>
-      <button onClick={reset}>Reset</button>
+    <div className={css.wrap}>
+      <button className={css.btn} onClick={optionGood}>
+        Good
+      </button>
+      <button className={css.btn} onClick={optionNeutral}>
+        Neutral
+      </button>
+      <button className={css.btn} onClick={optionBad}>
+        Bad
+      </button>
+      {total > 0 && (
+        <button className={css.btn} onClick={reset}>
+          Reset
+        </button>
+      )}
     </div>
   );
 };

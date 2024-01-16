@@ -4,12 +4,12 @@ export const Feedback = ({ good, neutral, bad, total, positive }) => {
   //   const totalFeedback = good + neutral + bad;
 
   return (
-    <ul>
-      <li>Good: {good}</li>
-      <li>Neutral: {neutral}</li>
-      <li>Bad: {bad}</li>
-      <li>Total: {total}</li>
-      <li>Positive: {positive}%</li>
+    <ul className={css.list}>
+      <li className={css.item}>Good: {good}</li>
+      <li className={css.item}>Neutral: {neutral}</li>
+      <li className={css.item}>Bad: {bad}</li>
+      <li className={css.item}>Total: {total}</li>
+      <li className={css.item}>Positive: {positive}%</li>
     </ul>
   );
 };
