@@ -8,9 +8,10 @@ import { Notification } from '../Notification/Notification';
 export const App = () => {
   const [feedback, setFeedback] = useState(() => {
     const savedFeedback = JSON.parse(localStorage.getItem('saved-feedback'));
-    let initialValue = savedFeedback.feedback;
-    console.log(savedFeedback.feedback);
-    if (initialValue !== null) {
+
+    if (savedFeedback !== null) {
+      let initialValue = savedFeedback.feedback;
+      console.log(initialValue);
       return {
         good: initialValue.good,
         neutral: initialValue.neutral,
