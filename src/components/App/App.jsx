@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import css from './App.module.css';
 
 import { Description } from '../Description/Description';
 import { Feedback } from '../Feedback/Feedback';
@@ -15,7 +14,7 @@ export const App = () => {
 
   const [feedback, setFeedback] = useState(() => {
     const savedFeedback = JSON.parse(localStorage.getItem('saved-feedback'));
-    let initialValue = savedFeedback.feedback;
+    let initialValue = savedFeedback;
     // console.log(savedFeedback.feedback);
     if (initialValue !== null) {
       return {
