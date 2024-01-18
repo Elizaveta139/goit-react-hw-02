@@ -6,12 +6,6 @@ import { Options } from '../Options/Options';
 import { Notification } from '../Notification/Notification';
 
 export const App = () => {
-  // const [feedback, setFeedback] = useState({
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0,
-  // });
-
   const [feedback, setFeedback] = useState(() => {
     const savedFeedback = JSON.parse(localStorage.getItem('saved-feedback'));
     let initialValue = savedFeedback.feedback;
@@ -41,20 +35,6 @@ export const App = () => {
   useEffect(() => {
     window.localStorage.setItem('saved-feedback', JSON.stringify({ feedback }));
   }, [feedback]);
-
-  // useEffect(() => {
-  //   const savedFeedback = window.localStorage.getItem('saved-feedback');
-  //   const initialValue = JSON.parse(savedFeedback);
-  //   if (initialValue !== null) {
-  //     setFeedback({ initialValue });
-  //   } else {
-  //     ({
-  //       good: 0,
-  //       neutral: 0,
-  //       bad: 0,
-  //     });
-  //   }
-  // }, []);
 
   const { good, neutral, bad } = feedback;
   const totalFeedback = good + neutral + bad;
