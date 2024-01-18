@@ -8,4 +8,8 @@
 }
 
 .item {
+  font-size: 30px;
+
+  color: #fff;
+  -webkit-text-stroke: 1px #000000;
 }

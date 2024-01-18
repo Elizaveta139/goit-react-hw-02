@@ -7,51 +7,35 @@ import { Options } from '../Options/Options';
 import { Notification } from '../Notification/Notification';
 
 export const App = () => {
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  // const [feedback, setFeedback] = useState({
+  //   good: 0,
+  //   neutral: 0,
+  //   bad: 0,
+  // });
+
+  const [feedback, setFeedback] = useState(() => {
+    const savedFeedback = JSON.parse(localStorage.getItem('saved-feedback'));
+    let initialValue = savedFeedback.feedback;
+    // console.log(savedFeedback.feedback);
+    if (initialValue !== null) {
+      return {
+        good: initialValue.good,
+        neutral: initialValue.neutral,
+        bad: initialValue.bad,
+      };
+    }
+
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
   });
 
-  //   const [feedback, setFeedback] = useState(() => {
-  //     const savedFeedback = localStorage.getItem('saved-feedback');
-
-  //     if (savedFeedback !== null) {
-  //       const initialValue = JSON.parse(savedFeedback);
-  //       return {
-  //         good: initialValue.good,
-  //         neutral: initialValue.neutral,
-  //         bad: initialValue.bad,
-  //       };
-  //     }
-
-  //     return {
-  //       good: 0,
-  //       neutral: 0,
-  //       bad: 0,
-  //     };
-  //   });
-
-  const { good, neutral, bad } = feedback;
-
-  const updateGood = () => {
+  const onLeaveFeedback = option => {
     setFeedback({
       ...feedback,
-      good: good + 1,
-    });
-  };
-
-  const updateNeutral = () => {
-    setFeedback({
-      ...feedback,
-      neutral: neutral + 1,
-    });
-  };
-
-  const updateBad = () => {
-    setFeedback({
-      ...feedback,
-      bad: bad + 1,
+      [option]: feedback[option] + 1,
     });
   };
 
@@ -59,19 +43,29 @@ export const App = () => {
     window.localStorage.setItem('saved-feedback', JSON.stringify({ feedback }));
   }, [feedback]);
 
-  //   Загальна кількість відгуків
-  const totalFeedback = good + neutral + bad;
+  // useEffect(() => {
+  //   const savedFeedback = window.localStorage.getItem('saved-feedback');
+  //   const initialValue = JSON.parse(savedFeedback);
+  //   if (initialValue !== null) {
+  //     setFeedback({ initialValue });
+  //   } else {
+  //     ({
+  //       good: 0,
+  //       neutral: 0,
+  //       bad: 0,
+  //     });
+  //   }
+  // }, []);
 
-  //   Відсоток позитивних відгуків
+  const { good, neutral, bad } = feedback;
+  const totalFeedback = good + neutral + bad;
   const positiveFeedback = Math.round(((good + neutral) / totalFeedback) * 100);
 
   return (
     <>
       <Description />
       <Options
-        optionGood={updateGood}
-        optionNeutral={updateNeutral}
-        optionBad={updateBad}
+        onLeaveFeedback={onLeaveFeedback}
         reset={() =>
           setFeedback({
             good: 0,
